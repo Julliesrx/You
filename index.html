@@ -157,10 +157,12 @@
         let isGone = false;
 
         nonButton.addEventListener('mouseenter', function(e) {
+            // Désactive le déplacement sur mobile
+            if (window.innerWidth <= 600) return;
+
             if (isGone) return;
             escapeCount++;
             const btnRect = nonButton.getBoundingClientRect();
-            const bodyRect = document.body.getBoundingClientRect();
 
             let maxX = window.innerWidth - btnRect.width - 20;
             let maxY = window.innerHeight - btnRect.height - 20;
@@ -187,6 +189,13 @@
         // Remet le bouton à sa place si la fenêtre est redimensionnée ou si on recharge
         window.addEventListener('resize', () => {
             if (!isGone) {
+                nonButton.style.position = '';
+                nonButton.style.left = '';
+                nonButton.style.top = '';
+                nonButton.style.transition = '';
+            }
+            // Si on passe sur mobile, on remet le bouton à sa place
+            if (window.innerWidth <= 600) {
                 nonButton.style.position = '';
                 nonButton.style.left = '';
                 nonButton.style.top = '';
