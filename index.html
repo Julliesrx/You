@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do you want ?</title>
+    <style>
+        * {
+            cursor:url(coeur.cur),auto;
+        }
+        body{
+            background-color: #ffebeb;
+            font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: #aa084c;
+            margin: 0;
+            padding: 20px;
+        }
+        h1{
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h2{
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family:Georgia, 'Times New Roman', Times, serif;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 60px;      /* Descend les boutons */
+            margin-bottom: 30px;
+        }
+        button {
+            font-size: 1.5em;
+            padding: 15px 35px;
+            margin: 0;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #ffb6d5 0%, #ff6f91 100%);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(170,8,76,0.15);
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+            font-family: 'Georgia', 'Times New Roman', Times, serif;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #ff6f91 0%, #ffb6d5 100%);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 24px rgba(170,8,76,0.25);
+        }
+        </style>
+</head>
+<body>
+    <h1>Do you wanna make out with me ?</h1>
+    <h2>Pleaseeeee</h2>
+    <div class="btn-group">
+        <button id="oui">Yes !</button>
+        <button id="non">No !</button>
+        <button id="jsp">Maybe...</button>
+    </div>
+    <video id="bg-video" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; object-fit:cover; z-index:-1;" autoplay loop muted>
+        <source src="rickroll.mp4" type="video/mp4">
+    </video>
+    <img id="danseur" src="danse.gif" alt="Danseur" style="display:none; position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); z-index:10; max-width:40vw; max-height:70vh;">
+</body>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ouiButton = document.getElementById('oui');
+        const nonButton = document.getElementById('non');
+        const jspButton = document.getElementById('jsp');
+        const bgVideo = document.getElementById('bg-video');
+        const danseur = document.getElementById('danseur');
+        const btnGroup = document.querySelector('.btn-group');
+        const h1 = document.querySelector('h1');
+        const h2 = document.querySelector('h2');
+
+        ouiButton.addEventListener('click', function() {
+            // Confettis bas gauche
+            confetti({
+                origin: { x: 0, y: 1 },
+                angle: 60,
+                spread: 90,
+                particleCount: 80,
+                startVelocity: 45
+            });
+            // Confettis bas droit
+            confetti({
+                origin: { x: 1, y: 1 },
+                angle: 120,
+                spread: 90,
+                particleCount: 80,
+                startVelocity: 45
+            });
+
+            // Confettis qui tombent du plafond lentement sur toute la largeur
+            for (let i = 0; i <= 1; i += 0.1) {
+                confetti({
+                    origin: { x: i, y: 0 },
+                    angle: 90,
+                    spread: 60,
+                    particleCount: 15,
+                    startVelocity: 15,
+                    gravity: 0.3,
+                    ticks: 200
+                });
+            }
+            danseur.style.display = 'block';
+            btnGroup.style.display = 'none';
+            h1.textContent = "let's gooo";
+            if (h2) {
+                h2.textContent = "mon insta : jullie.srx";
+                h2.style.display = "block";
+            }
+        });
+
+        // Affiche la vidéo en fond quand on clique sur "Maybe..."
+        jspButton.addEventListener('click', function() {
+            bgVideo.style.display = 'block';
+            btnGroup.style.display = 'none';
+            h1.textContent = "et hop rickrolled";
+            if (h2) h2.style.display = "none";
+        });
+
+        // Affiche le danseur quand on clique sur "Yes !"
+        ouiButton.addEventListener('click', function() {
+            danseur.style.display = 'block';
+        });
+
+        // Mouvement du bouton "No"
+        let escapeCount = 0;
+        let isGone = false;
+
+        nonButton.addEventListener('mouseenter', function(e) {
+            if (isGone) return;
+            escapeCount++;
+            const btnRect = nonButton.getBoundingClientRect();
+            const bodyRect = document.body.getBoundingClientRect();
+
+            let maxX = window.innerWidth - btnRect.width - 20;
+            let maxY = window.innerHeight - btnRect.height - 20;
+
+            let newX, newY;
+
+            if (escapeCount >= 5) {
+                // S'enfuit hors de l'écran
+                isGone = true;
+                newX = (Math.random() > 0.5 ? -btnRect.width - 100 : window.innerWidth + 100);
+                newY = Math.random() * (window.innerHeight - btnRect.height);
+            } else {
+                // Se décale aléatoirement
+                newX = Math.random() * maxX;
+                newY = Math.random() * maxY;
+            }
+
+            nonButton.style.position = 'fixed';
+            nonButton.style.left = `${newX}px`;
+            nonButton.style.top = `${newY}px`;
+            nonButton.style.transition = 'left 0.2s, top 0.2s';
+        });
+
+        // Remet le bouton à sa place si la fenêtre est redimensionnée ou si on recharge
+        window.addEventListener('resize', () => {
+            if (!isGone) {
+                nonButton.style.position = '';
+                nonButton.style.left = '';
+                nonButton.style.top = '';
+                nonButton.style.transition = '';
+            }
+        });
+    });
+</script>
+</html>
