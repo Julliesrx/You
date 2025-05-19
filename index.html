@@ -173,6 +173,12 @@
                 nonButton.style.transition = '';
             }
         });
+
+        nonButton.addEventListener('click', function() {
+            nonButton.style.display = 'none'; // Le bouton "No" disparaît
+            ouiButton.style.background = 'linear-gradient(135deg, #ff0000 0%, #b80000 100%)'; // Le bouton "Yes" devient rouge
+            ouiButton.style.color = '#fff';
+        });
     });
 </script>
 </html>
