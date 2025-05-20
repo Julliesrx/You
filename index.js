@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
-        const ouiButton = document.getElementById('oui');
-        const nonButton = document.getElementById('non');
-        const jspButton = document.getElementById('jsp');
-        const ouiVideo = document.getElementById('oui-video');
-        const danseur = document.getElementById('danseur');
-        const btnGroup = document.querySelector('.btn-group');
-        const h1 = document.querySelector('h1');
-        const h2 = document.querySelector('h2');
+        let ouiButton = document.getElementById('oui');
+        let nonButton = document.getElementById('non');
+        let jspButton = document.getElementById('jsp');
+        let ouiVideo = document.getElementById('oui-video');
+        let danseur = document.getElementById('danseur');
+        let btnGroup = document.querySelector('.btn-group');
+        let h1 = document.querySelector('h1');
+        let h2 = document.querySelector('h2');
 
         ouiButton.addEventListener('click', function() {
             // Confettis bas gauche
@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
             btnGroup.style.display = 'none';
             h1.textContent = "et hop rickrolled";
             if (h2) h2.style.display = "none";
-            // Active le son et relance la vidéo
             ouiVideo.muted = false;
             ouiVideo.currentTime = 0;
             ouiVideo.play();
