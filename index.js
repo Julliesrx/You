@@ -1,4 +1,4 @@
-    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
         const ouiButton = document.getElementById('oui');
         const nonButton = document.getElementById('non');
         const jspButton = document.getElementById('jsp');
@@ -65,6 +65,8 @@
         let isGone = false;
 
         nonButton.addEventListener('mouseenter', function(e) {
+            // Désactive la fuite sur mobile
+            if (window.innerWidth <= 600) return;
             if (isGone) return;
             escapeCount++;
             const btnRect = nonButton.getBoundingClientRect();
