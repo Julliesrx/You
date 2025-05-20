@@ -75,12 +75,12 @@
             let newX, newY;
 
             if (escapeCount >= 5) {
-                // S'enfuit hors de l'écran
+                // part hors écran
                 isGone = true;
                 newX = (Math.random() > 0.5 ? -btnRect.width - 100 : window.innerWidth + 100);
                 newY = Math.random() * (window.innerHeight - btnRect.height);
             } else {
-                // Se décale aléatoirement
+                // fuit aléatoirement
                 newX = Math.random() * maxX;
                 newY = Math.random() * maxY;
             }
@@ -99,18 +99,12 @@
                 nonButton.style.top = '';
                 nonButton.style.transition = '';
             }
-            // Si on passe sur mobile, on remet le bouton à sa place
-            if (window.innerWidth <= 600) {
-                nonButton.style.position = '';
-                nonButton.style.left = '';
-                nonButton.style.top = '';
-                nonButton.style.transition = '';
-            }
+
         });
 
         nonButton.addEventListener('click', function() {
-            nonButton.style.display = 'none'; // Le bouton "No" disparaît
-            ouiButton.style.background = 'linear-gradient(135deg, #ff0000 0%, #b80000 100%)'; // Le bouton "Yes" devient rouge
+            nonButton.style.display = 'none'; 
+            ouiButton.style.background = 'linear-gradient(135deg, #ff0000 0%, #b80000 100%)';
             ouiButton.style.color = '#fff';
         });
     });
