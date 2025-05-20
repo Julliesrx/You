@@ -53,6 +53,10 @@ document.addEventListener('DOMContentLoaded', function() {
             btnGroup.style.display = 'none';
             h1.textContent = "et hop rickrolled";
             if (h2) h2.style.display = "none";
+            // Active le son et relance la vidéo
+            ouiVideo.muted = false;
+            ouiVideo.currentTime = 0;
+            ouiVideo.play();
         });
 
         // danseur Oui
