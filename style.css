@@ -1,8 +1,8 @@
 * {
     cursor:url(coeur.cur),auto;
 }
-body::selection {
-    background-color: green;
+::selection {
+    background-color: #ff6f91;
     color: white;
 }
 body{
