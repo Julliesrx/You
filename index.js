@@ -43,13 +43,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     startVelocity: 15,
                     gravity: 0.3,
                     ticks: 1500
-                    // vitesse + vie
                 });
             }
             danseur.style.display = 'block';
             btnGroup.style.display = 'none';
             h1.textContent = "Let's gooo";
-            // +affiche🕺-boutons +change texte
             h2.textContent = "mon insta : jullie.srx";
             h2.style.display = "block";
     });
@@ -57,14 +55,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // vidéo Maybe
     jspButton.addEventListener('click', function() {
             ouiVideo.style.display = 'block';
-                // rickroll (display none → block)
             btnGroup.style.display = 'none';
             h1.textContent = "et hop rickrolled";
             h2.style.display = "none";
             ouiVideo.muted = false;
             ouiVideo.currentTime = 0;
             ouiVideo.play();
-            // active son vidéo + au début 
     });
 
         // Non qui fuit
@@ -85,17 +81,17 @@ document.addEventListener('DOMContentLoaded', function() {
             if (Afui >= 8) {
                 // part hors écran
                 Parti = true;
-                newX = (Math.random() > 0.5 ? -btnRect.width - 100 : window.innerWidth + 100);
-                newY = Math.random() * (window.innerHeight - btnRect.height);
+                newX = -btnRect.width - 100;
+                newY = 300;
             } else {
                 // fuit aléatoirement
                 newX = Math.random() * maxX;
                 newY = Math.random() * maxY;
             }
 
-            nonButton.style.position = 'fixed';
-            nonButton.style.left = `${newX}px`;
-            nonButton.style.top = `${newY}px`;
+            nonButton.style.position = 'absolute';
+            nonButton.style.left = newX + "px";
+            nonButton.style.top = newY + "px";
             nonButton.style.transition = 'left 0.2s, top 0.2s';
         });
         nonButton.addEventListener('click', function() {
