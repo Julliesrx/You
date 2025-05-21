@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // direct au chargement de la page (loaded)
         let ouiButton = document.getElementById('oui');
         let nonButton = document.getElementById('non');
         let jspButton = document.getElementById('jsp');
@@ -7,81 +8,83 @@ document.addEventListener('DOMContentLoaded', function() {
         let btnGroup = document.querySelector('.btn-group');
         let h1 = document.querySelector('h1');
         let h2 = document.querySelector('h2');
+        let ModeNuit = document.querySelector('.switch input');
 
-        ouiButton.addEventListener('click', function() {
+        // element . 
+        // définition d'une fonction exécutée lorsque l'action est effectuée
+    ouiButton.addEventListener('click', function() {
+                // danseur (display none → block)
+            danseur.style.display = 'block';
             // Confettis bas gauche
             confetti({
-                origin: { x: 0, y: 1 },
+                origin: {x:0, y: 1 },
                 angle: 60,
                 spread: 90,
                 particleCount: 80,
                 startVelocity: 45
+                // nombre + vitesse (px.s)
             });
             // Confettis bas droit
             confetti({
-                origin: { x: 1, y: 1 },
+                origin: {x: 1, y:1 },
                 angle: 120,
                 spread: 90,
                 particleCount: 80,
-                startVelocity: 45
+                startVelocity: 45 
             });
 
-            // Confettis plafond
+            // Confettis plafond 
             for (let i = 0; i <= 1; i += 0.1) {
                 confetti({
                     origin: { x: i, y: 0 },
                     angle: 90,
-                    spread: 60,
+                    spread: 150,
                     particleCount: 15,
                     startVelocity: 15,
                     gravity: 0.3,
-                    ticks: 200
+                    ticks: 1500
+                    // vitesse + vie
                 });
             }
             danseur.style.display = 'block';
             btnGroup.style.display = 'none';
-            h1.textContent = "let's gooo";
-            if (h2) {
-                h2.textContent = "mon insta : jullie.srx";
-                h2.style.display = "block";
-            }
-        });
+            h1.textContent = "Let's gooo";
+            // +affiche🕺-boutons +change texte
+            h2.textContent = "mon insta : jullie.srx";
+            h2.style.display = "block";
+    });
 
         // vidéo Maybe
-        jspButton.addEventListener('click', function() {
+    jspButton.addEventListener('click', function() {
             ouiVideo.style.display = 'block';
+                // rickroll (display none → block)
             btnGroup.style.display = 'none';
             h1.textContent = "et hop rickrolled";
-            if (h2) h2.style.display = "none";
+            h2.style.display = "none";
             ouiVideo.muted = false;
             ouiVideo.currentTime = 0;
             ouiVideo.play();
-        });
-
-        // danseur Oui
-        ouiButton.addEventListener('click', function() {
-            danseur.style.display = 'block';
-        });
+            // active son vidéo + au début 
+    });
 
         // Non qui fuit
-        let escapeCount = 0;
-        let isGone = false;
+        let Afui = 0;
+        let Parti = false;
 
         nonButton.addEventListener('mouseenter', function(e) {
-            // Désactive la fuite sur mobile
-            if (window.innerWidth <= 600) return;
-            if (isGone) return;
-            escapeCount++;
-            const btnRect = nonButton.getBoundingClientRect();
 
-            let maxX = window.innerWidth - btnRect.width - 20;
-            let maxY = window.innerHeight - btnRect.height - 20;
+            if (Parti) return;
+            Afui++;
+            let btnRect = nonButton.getBoundingClientRect();
+
+            let maxX = window.innerWidth - btnRect.width - 100;
+            let maxY = window.innerHeight - btnRect.height - 150;
 
             let newX, newY;
 
-            if (escapeCount >= 5) {
+            if (Afui >= 8) {
                 // part hors écran
-                isGone = true;
+                Parti = true;
                 newX = (Math.random() > 0.5 ? -btnRect.width - 100 : window.innerWidth + 100);
                 newY = Math.random() * (window.innerHeight - btnRect.height);
             } else {
@@ -95,18 +98,6 @@ document.addEventListener('DOMContentLoaded', function() {
             nonButton.style.top = `${newY}px`;
             nonButton.style.transition = 'left 0.2s, top 0.2s';
         });
-
-        // Remet le bouton à sa place si la fenêtre est redimensionnée ou si on recharge
-        window.addEventListener('resize', () => {
-            if (!isGone) {
-                nonButton.style.position = '';
-                nonButton.style.left = '';
-                nonButton.style.top = '';
-                nonButton.style.transition = '';
-            }
-
-        });
-
         nonButton.addEventListener('click', function() {
             nonButton.style.display = 'none'; 
             ouiButton.style.background = 'linear-gradient(135deg, #ff0000 0%, #b80000 100%)';
