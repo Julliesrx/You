@@ -4,6 +4,7 @@
 ::selection {
     background-color: #ff6f91;
     color: white;
+
 }
 body{
     background-color: #ffebeb;
@@ -39,7 +40,7 @@ button {
     background: linear-gradient(135deg, #ffb6d5 0%, #ff6f91 100%);
     color: #fff;
     box-shadow: 0 4px 16px rgba(170,8,76,0.15);
-    cursor: pointer;
+    /* cursor: pointer; */
     transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
     font-family: 'Georgia', 'Times New Roman', Times, serif;
     letter-spacing: 1px;
