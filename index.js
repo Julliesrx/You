@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
             danseur.style.display = 'block';
             btnGroup.style.display = 'none';
             h1.textContent = "Let's gooo";
-            h2.textContent = "mon insta : jullie.srx";
+            h2.textContent = "mon insta : <a href="#"> jullie.srx </a>";
             h2.style.display = "block";
     });
 
