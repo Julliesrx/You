@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // direct au chargement de la page (loaded)
         let ouiButton = document.getElementById('oui');
         let nonButton = document.getElementById('non');
         let jspButton = document.getElementById('jsp');
@@ -8,14 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
         let btnGroup = document.querySelector('.btn-group');
         let h1 = document.querySelector('h1');
         let h2 = document.querySelector('h2');
-        let ModeNuit = document.querySelector('.switch input');
 
-        // element . 
-        // définition d'une fonction exécutée lorsque l'action est effectuée
     ouiButton.addEventListener('click', function() {
-                // danseur (display none → block)
             danseur.style.display = 'block';
-            // Confettis bas gauche
             confetti({
                 origin: {x:0, y: 1 },
                 angle: 60,
@@ -24,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 startVelocity: 45
                 // nombre + vitesse (px.s)
             });
-            // Confettis bas droit
             confetti({
                 origin: {x: 1, y:1 },
                 angle: 120,
@@ -33,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 startVelocity: 45 
             });
 
-            // Confettis plafond 
             for (let i = 0; i <= 1; i += 0.1) {
                 confetti({
                     origin: { x: i, y: 0 },
@@ -52,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
             h2.style.display = "block";
     });
 
-        // vidéo Maybe
     jspButton.addEventListener('click', function() {
             ouiVideo.style.display = 'block';
             btnGroup.style.display = 'none';
@@ -63,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
             ouiVideo.play();
     });
 
-        // Non qui fuit
         let Afui = 0;
         let Parti = false;
 
@@ -79,12 +69,10 @@ document.addEventListener('DOMContentLoaded', function() {
             let newX, newY;
 
             if (Afui >= 8) {
-                // part hors écran
                 Parti = true;
                 newX = -btnRect.width - 100;
                 newY = 300;
             } else {
-                // fuit aléatoirement
                 newX = Math.random() * maxX;
                 newY = Math.random() * maxY;
             }

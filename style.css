@@ -40,14 +40,29 @@ h2{
     background: linear-gradient(135deg, #ffb6d5 0%, #ff6f91 100%);
     color: #fff;
     box-shadow: 0 4px 16px rgba(170,8,76,0.15);
-    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
     font-family: 'Georgia', 'Times New Roman', Times, serif;
-    letter-spacing: 1px;
 }
-
 button:hover {
     background: #ff6f91;
-    transform: translateY(-4px) scale(1.05);
     box-shadow: 0 8px 24px rgba(170,8,76,0.25);
     cursor:url(coeur.cur),auto;
+}
+
+.telecharger {
+position: fixed;
+     bottom: 20px;
+     right: 20px;
+     font-size: 1.5em;
+     padding: 15px 35px;
+     margin: 0;
+     border: none;
+     border-radius: 30px;
+     background: linear-gradient(135deg, #ffb6d5 0%, #ff6f91 100%);
+     color: #fff;
+     box-shadow: 0 4px 16px rgba(170,8,76,0.15);
+     font-family: 'Georgia', 'Times New Roman', Times, serif;
+     text-decoration: none;
+    cursor:url(coeur.cur),auto;
+     display: inline-block;
+     z-index: 1000;
 }
